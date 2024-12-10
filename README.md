@@ -1,46 +1,69 @@
 # Library Management System API
-Overview
-The Library Management System API provides a set of RESTful endpoints to manage books, users, reviews, and categories. 
-It supports functionalities like browsing books, borrowing and returning books, writing reviews, and adding new books.
+   __Overview__  
+```
+The Library Management System API provides a set of RESTful endpoints to manage books, users, reviews, and genres. 
+    
+It supports functionalities like browsing books, borrowing and
+returning books, writing reviews, and other database CRUD actions on books.
+```
+__Requirements__    
 
-Requirements
--Python 3.8+
--Django 3.0+
--Django REST Framework
--SQLite (for development) or MySQL (for production)
+    The required software/tool and libraries you will need for the  
+    API to function properly are listed below. The bullets are  
+    hyperlinked to the respective tool website.
 
-Installation
-Clone the repository:
+- [Python 3.8+]()
+- [Django 3.0+]()
+- [Django REST Framework]()
+- [SQLite (for development)]() or [MySQL (for production)]()
 
+#
+__Installation__    
+
+The instructions outlined here should be followed through   
+in your command line terminal. These are done with `bash` shell.
+
+_*Clone the repository from github:*_ 
 ```bash
-Copy code
-git clone https://github.com/cephstay/capstone_library_api.git
-cd capstone_library_api
-Set up a virtual environment:
+$ git clone https://github.com/cephstay/capstone_library_api.git
+```
 
+_*Move into the automatically created directory: `capstone_library_api`*_
+```bash
+$ cd capstone_library_api
+```
 
-Copy code
-python3 -m venv venv
-source venv/bin/activate  # On Windows, use venv\Scripts\activate
-Install the dependencies:
+_*Activate the virtual environment `library_venv`*_
+```bash
+$ source library_venv/bin/activate
+```
 
+_*Install the library packages in the `requirements.txt` file*_
+```bash
+$ pip install -r requirements.txt
+```
 
-Copy code
-pip install -r requirements.txt
-Migrate the database:
+_*Set up your database connection settings in the `.env` file*_
 
+- [Instructions Here]()
 
-Copy code
-python manage.py migrate
-Create a superuser (optional):
+_*Migrate the database*_
+```bash
+$ python manage.py migrate
+```
 
+_*Create a SuperUser (Optional)*_
+```bash
+$ python manage.py createsuperuser --username --email --password
+```
 
-Copy code
-python manage.py createsuperuser
-Start the development server:
+_*Start the Development Server*_
+```bash
+$ python manage.py runserver
+```
 
+The API should now be running at `https://127.0.0.1:8000`
 
-Copy code
-python manage.py runserver
-The API should now be running at http://127.0.0.1:8000.
+# 
 
+# Database Schema and Table Relationships

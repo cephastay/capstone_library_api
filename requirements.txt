@@ -1,0 +1,2 @@
+# Dependencies for Library Management System
+
