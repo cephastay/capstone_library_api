@@ -67,3 +67,31 @@ The API should now be running at `https://127.0.0.1:8000`
 # 
 
 # Database Schema and Table Relationships
+
+
+#
+
+# User EndPoints
+
+# Testing of User End Points with PostMan
+Click on the highlighted links to be redirected to a google drive with the images of the test cases
+
+- [GET /users/user_id/](https://drive.google.com/file/d/1aUjmbQx9c5QgMDF_K88-RU-VZOP726rW/view?usp=sharing)
+
+- [POST /users/new/](https://drive.google.com/file/d/1FsZpW11ak1G1T4LE9By9qJLixtbPnCnS/view?usp=sharing)
+
+- [PUT /users/3/update/](https://drive.google.com/file/d/1kV-EO2m-n0BgEJz3U5ZpAvZY0ynX0oRa/view?usp=sharing) - Success
+
+-  [PUT /users/3/update/](https://drive.google.com/file/d/1aLduaHX7dzdsQvXJ499trvHvYKSXVwsp/view?usp=sharing) -Forbidden
+
+```
+Only four endpoints were tested.
+
+1. The GET method to retrieve information about a particular user
+
+2. The POST method for creating a new user
+
+3. The PUT method for updating information about the User
+
+The only method which required authentication was the PUT method
+```
