@@ -18,7 +18,7 @@ class Register(generics.CreateAPIView):
 class UserView(generics.RetrieveUpdateDestroyAPIView):
     """This is for retrieving updating or Destroy user instances"""
 
-    permission_classes = [IsUserOrReadOnly]
+    permission_classes = [IsUserOrReadOnly, permissions.IsAuthenticatedOrReadOnly]
     serializer_class = ProfileInfoSerializer
     queryset = get_user_model().objects.all()
 
@@ -27,3 +27,6 @@ class UserView(generics.RetrieveUpdateDestroyAPIView):
     
     def retrieve(self, request, *args, **kwargs):
         return super().retrieve(request, *args, **kwargs)
+    
+    def delete(self, request, *args, **kwargs):
+        return super().delete(request, *args, **kwargs)

@@ -1,0 +1,95 @@
+
+// Updated Entity Relation Diagram Mapping for a Library Management System API
+
+Table Users {
+  user_id pk [increment]
+  username varchar [unique]
+  email email [unique]
+  is_staff bool [default: 0]
+  role_id int [ref: - Role.role_id, unique, null]
+}
+
+Table Role {
+  role_id pk [increment]
+  name choices [unique, note: 'member|admin|librarian']
+}
+
+Table Book {
+  book_id pk [increment] 
+  title varchar [unique, note: 'max_length 150']
+  author varchar [note: 'max_length 75']
+  ISBN varchar [unique, note: 'ISBN format supported']
+}
+
+Table Book_Status {
+  book_id int [ref: - Book.book_id, unique] // Enforces a one-to-one relationship
+  available bool [default: true] 
+  copies int [default: 1]
+}
+
+Table CheckOut {
+  id pk [increment]
+  book_status_id int [ref: > Book_Status.book_id]
+  user_id int [ref: > Users.user_id]
+  // Ensures a user cannot check out the same book twice concurrently
+  indexes {
+    (book_status_id, user_id) [unique]
+  }
+}
+
+Table Transaction {
+  id pk [increment]
+  checkout_id int [ref: > CheckOut.id]
+  checkout_date datetime [default: "datetime.now()"]
+  status choices [note: 'pending|missing|returned']
+  return_date datetime [null, note: 'Set only when returned']
+}
+
+// // This is an entity relation Diagram Mapping for a Library Management
+// // System API
+
+// Table Users {
+//   user_id pk [increment]
+//   username varchar [unique]
+//   email email [unique]
+//   is_staff bool [default: 0]
+// }
+
+// Table Role {
+//   user int [ref: - Users.user_id]
+//   role choices [default: 'member', note: 'member|admin|librarian']
+// }
+
+// Table Book {
+//   book_id pk [increment] 
+//   title varchar [unique, note:'max_length 150']
+//   author varchar [note: 'max_length 75']
+//   ISBN int [unique]
+// }
+
+// Table Book_Status {
+//   book int [Ref: - Book.book_id, unique]
+//   available bool [default: True] 
+//   copies int [default: 1]
+// }
+
+// Table CheckOut {
+//   id pk [increment]
+//   book_status_id int [Ref: > Book_Status.book] //this could have been the book id but normalizing this data into multiple tables is better?
+//   user_id int [ref: > Users.user_id]
+//   // book_status_id and user_id will be set to unique together to prevent a user from checking out a book twice 
+// }
+
+// Table Transaction {
+//   id int pk
+//   checkout_id int [Ref: - CheckOut.id]
+//   checkout_date date [default: 'datetime.now()']
+//   status choices [note: 'pending| missing| returned']
+//   return_date date [null, note: 'set to when returned']
+// }
+
+// Table OverDue_Tracking {
+//   id int pk [increment]
+//   check_out int [ref: - Transaction.id]
+//   overdue_by int [note: 'automatically generated']
+// }

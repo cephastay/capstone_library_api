@@ -30,9 +30,11 @@ class UserSerializer(serializers.ModelSerializer):
             user.save()
         return user
     
+    
 class ProfileInfoSerializer(serializers.ModelSerializer):
     username = serializers.ReadOnlyField()
     email = serializers.EmailField(required=False)
+    date_joined = serializers.ReadOnlyField(label='Member Since')
     class Meta:
         model = get_user_model()
-        fields = ['username','bio','email']
+        fields = ['username','bio','email', 'date_joined']
